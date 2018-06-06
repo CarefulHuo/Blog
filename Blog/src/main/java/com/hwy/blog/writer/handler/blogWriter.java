@@ -42,7 +42,7 @@ public class blogWriter {
 		}
 		model.addAttribute("labels", labelInformation);
 		model.addAttribute("categorys", categoryInformation);
-			return "/jsp/blogAdmin/addBlog.jsp";
+			return "/jsp/addBlog.jsp";
 	}
 	/*查找博客*/
 	@RequestMapping("/findBlog.action")
@@ -74,7 +74,7 @@ public class blogWriter {
 		model.addAttribute("categorys", categoryInformation);
 		model.addAttribute("labels", labelInformation);
 		
-		return "/jsp/blogAdmin/blogList.jsp";
+		return "/jsp/blogList.jsp";
 		
 	}
 	/*博客的单个查找*/
@@ -82,7 +82,7 @@ public class blogWriter {
 	public String findOneBlog(@RequestParam(defaultValue="-1")Integer blogId,Model model){
 		Blog blog = blogService.findOneBlog(blogId);
 		model.addAttribute("blog", blog);
-		return "/jsp/blogAdmin/blogInformation.jsp";
+		return "/jsp/blogInformation.jsp";
 	}
 	/*删除博客*/
 	@RequestMapping("/deleteBlog.action")
@@ -100,7 +100,7 @@ public class blogWriter {
 		model.addAttribute("blog", blog);
 		model.addAttribute("categorys", categoryInformation);
 		model.addAttribute("labels", labelInformation);
-		return "/jsp/blogAdmin/nodifyBlog.jsp";
+		return "/jsp/nodifyBlog.jsp";
 	}
 	/*修改博客*/
 	@RequestMapping("/nodifyBlog.action")
@@ -108,7 +108,7 @@ public class blogWriter {
 		System.out.println(id);
 		blog.setB_id(id);
 		int result = blogService.nodifyBlog(blog);
-		return "/jsp/blogAdmin/nodifyBlog.jsp";
+		return "/jsp/nodifyBlog.jsp";
 	}
 	//截取博客内容部分
 		public static String removeTag(String htmlStr) {  

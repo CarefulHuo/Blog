@@ -55,7 +55,7 @@
 	</filter-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>/jsp/blog/redirect.jsp</welcome-file>
+		<welcome-file>/jsp/redirect.jsp</welcome-file>
 	</welcome-file-list>
 	
 </web-app>

@@ -17,9 +17,9 @@ public class loginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) rq;
 		HttpServletResponse response = (HttpServletResponse) rp;
 		
-		String [] URI = {"/","/jsp/admin/login.jsp","/blogFind/findBlogs.action","/blogFind/findBlogByOne.action",
-						  "/jsp/blog/index.jsp","/blogAdmin/selectBlog.action","/blogAdmin/login.action",
-						  "/jsp/blog/abountme.jsp","/blogFind/aboutme.action","/blogFind/findStudentNote.action"};
+		String [] URI = {"/","/jsp/login.jsp","/blogFind/findBlogs.action","/blogFind/findBlogByOne.action",
+						  "/jsp/index.jsp","/blogAdmin/selectBlog.action","/blogAdmin/login.action",
+						  "/jsp/abountme.jsp","/blogFind/aboutme.action","/blogFind/findStudentNote.action"};
 		
 		//项目路径
 		String contextURI = request.getContextPath();
@@ -38,7 +38,7 @@ public class loginFilter implements Filter {
 			return;
 		}else{
 			request.setAttribute("message", "请登录后访问！！！");
-			request.getRequestDispatcher("/jsp/admin/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 			return;
 		}
 		

@@ -44,7 +44,7 @@ public class blogFindHandler {
 		model.addAttribute("page", page);
 		model.addAttribute("blogs", blogList);
 		model.addAttribute("labels", labelList);
-		return "/jsp/blog/index.jsp";
+		return "/jsp/index.jsp";
 	}
 	/*studyNote页面的内容显示*/
 	@RequestMapping("/findStudentNote.action")
@@ -68,11 +68,11 @@ public class blogFindHandler {
 		model.addAttribute("labels", labelList);
 		
 		if(flag==1){
-			return "/jsp/blog/informationSharing.jsp";
+			return "/jsp/informationSharing.jsp";
 		}else if(flag==2){
-			return "/jsp/blog/studyNote.jsp";
+			return "/jsp/studyNote.jsp";
 		}else if(flag==3){
-			return "/jsp/blog/chickenSoup.jsp";
+			return "/jsp/chickenSoup.jsp";
 		}
 		return null;
 	}
@@ -89,14 +89,14 @@ public class blogFindHandler {
 		
 		model.addAttribute("blog", blog);
 		model.addAttribute("labels", labelList);
-		return "/jsp/blog/blogContent.jsp";
+		return "/jsp/blogContent.jsp";
 	}
 	/*关于我的显示*/
 	@RequestMapping("/aboutme.action")
 	public String aboutme(Model model){
 		List<Label> labelList = blogFindService.findLabel();
 		model.addAttribute("labels", labelList);
-		return "/jsp/blog/aboutme.jsp";
+		return "/jsp/aboutme.jsp";
 	}
 	//截取博客内容部分
 	public static String removeTag(String htmlStr) {  
