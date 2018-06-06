@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwy.blog.writer.dao.IBlogDao">
+	<!-- 查找所有标签 -->
+	<resultMap type="Label" id="labelInformation">
+		<id column="id" property="labelId"/>
+		<result column="label_name" property="labelName"/>
+	</resultMap>
+
+	<select id="selectBlogLabel" resultMap="labelInformation">
+		select id,label_name from label
+	</select>
+	<!-- 查找所有类别 -->
+	<resultMap type="Category" id="categoryInformation">
+		<id column="id" property="c_id"/>
+		<result column="category_name" property="c_name"/>
+	</resultMap>
+	
+	<select id="selectBlogCategory" resultMap="categoryInformation">
+		select id,category_name from category
+	</select>
+	
+	<!-- 查找博客数量 -->
+	<select id="selectBlogCount" resultType="int"> 
+		select count(*) from blog
+		<where>
+			<if test="b_label !=null &amp;&amp; b_label >0">
+				label_id =#{b_label}
+			</if>
+			<if test="b_category !=null &amp;&amp; b_category >0">
+				and category_id=#{b_category}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查找所有博客 -->
+	<resultMap type="Blog" id="blogInformation">
+		<id column="id" property="b_id"/>
+		<result column="title" property="b_title"/>
+		<result column="content" property="b_content"/>
+		<result column="label_id" property="b_label"/>
+		<result column="category_id" property="b_category"/>
+		<result column="create_date" property="b_createDate"/>
+	</resultMap>
+	
+	<select id="selectBlog" resultMap="blogInformation "> 
+		select id,title,label_id,category_id,content,create_date from blog
+		<where>
+			<if test="b_label !=null &amp;&amp; b_label > 0">
+				label_id =#{b_label}
+			</if>
+			<if test="b_category !=null &amp;&amp; b_category > 0">
+				and category_id=#{b_category}
+			</if>
+		</where>
+		limit #{startPageIndex},#{pageSize}
+	</select>
+	<!-- 查找单个博客 -->
+	<select id="selectOneBlog" resultMap="blogInformation">
+		select id,title,label_id,category_id,content,create_date from blog
+		<where>
+			<if test="blogId !=null &amp;&amp; blogId > 0">
+				and id=#{blogId}
+			</if>
+		</where>
+	</select>
+	
+	 <!-- 添加博客 -->
+	<insert id="insertBlog">
+		insert into blog(content,label_id,title,category_id,create_date) 
+		values(#{b_content},#{b_label},#{b_title},#{b_category},#{b_createDate})
+	</insert>
+	<!-- 删除博客 -->
+	<delete id="deleteBlog">
+		delete from blog where id=#{blog_Id}
+	</delete>
+	<!-- 修改博客 -->
+	<update id="updateBlog">
+		update  blog  set
+		content=#{b_content},
+		label_id=#{b_label},
+		title=#{b_title},
+		category_id=#{b_category}
+		where id=#{b_id}
+ 	</update>
+</mapper>

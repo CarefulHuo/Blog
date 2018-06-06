@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 注册实体类中的别名 -->
+	<typeAliases>
+		<package name="com.hwy.blog.common.beans"/>
+	</typeAliases>
+	<!-- 注册映射文件   这个写不写无所谓，-->
+	<mappers>
+		<package name="com.hwy.blog.**.dao"/>
+	</mappers>
+</configuration>

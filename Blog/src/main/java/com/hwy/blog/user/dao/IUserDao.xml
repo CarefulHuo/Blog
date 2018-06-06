@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwy.blog.user.dao.IUserDao">
+	<resultMap type="User" id="blogUser">
+		<id column="id" property="id"/>
+		<result column="username" property="b_username"/>
+		<result column="password" property="b_password"/>
+		<result column="name" property="b_name"/>
+	</resultMap>
+	
+	<select id="selectUser" resultMap="blogUser">
+		select username,password,name from user
+		where username=#{b_username} and password=#{b_password}
+	</select>
+
+</mapper>

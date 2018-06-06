@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- 注册数据源 -->
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="DriverClass" value="${jdbc.driver}"/>
+			<property name="JdbcUrl" value="${jdbc.url}"/>
+			<property name="User" value="${jdbc.username}"/>
+			<property name="Password" value="${jdbc.password}"/>
+		</bean>
+		<!-- 注册属性文件 -->
+		<context:property-placeholder location="classpath:config/jdbc.properties"/>		
+
+</beans>

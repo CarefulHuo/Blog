@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="addAdmin" template="/jsp/admin/addAdmin.jsp">   <!-- 页面的底板  -->
+		<put-attribute name="header" value="/jsp/admin/adminHead.jsp"/>     
+		<put-attribute name="bodyAddAdmin" value="/jsp/admin/addAdimBody.jsp"/>
+		<put-attribute name="right" value="/jsp/admin/admingRight.jsp"/>
+	</definition>
+</tiles-definitions>     
+       

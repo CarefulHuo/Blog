@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwy.blog.find.dao.IBlogFindDao">
+	
+	<!-- 查找博客的分类标签 -->
+	<resultMap type="Label" id="labelInformation">
+		<id column="id" property="labelId"/>
+		<result column="label_name" property="labelName"/>
+	</resultMap>
+	
+	<select id="selectLabel" resultMap="labelInformation">
+		select id,label_name from label 
+	</select>
+	<!-- 查找博客数量 -->
+	<select id="findBlogCount" resultType="int">
+		select count(*) from blog
+		<where>
+			<if test="label.labelId > 0  &amp;&amp; label.labelId !=null">
+				label_id = #{label.labelId}
+			</if>
+		</where>
+	</select>
+	<!-- 查找博客 -->
+	<resultMap type="Blog" id="blogInformation">
+		<id column="id" property="b_id"/>
+		<result column="title" property="b_title"/>
+		<result column="content" property="b_content"/>
+		<result column="label_id" property="b_label"/>
+		<result column="category_id" property="b_category"/>
+		<result column="content" property="b_content"/>
+		<result column="create_date" property="b_createDate"/>
+	</resultMap>
+	<select id="selectBlogs" resultMap="blogInformation">
+		select id,title,label_id,category_id,content,create_date from blog
+		<where>
+			<if test="labelId > 0 &amp;&amp; labelId != null">
+				label_id = #{labelId}
+			</if>
+		</where>
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 单个查找博客 -->
+	<select id="selectBlogByOne" resultMap="blogInformation">
+		select id,title,content,create_date from blog
+		<where>
+			id = #{id}
+		</where>
+	</select>
+	<!-- 查找关于学习笔记博客的数量 -->
+	<select id="selectStudentNoteCount" resultType="int">
+		select count(*) from blog
+		<where>
+			<if test="labelId > 0  &amp;&amp; labelId !=null">
+				label_id = #{labelId}
+			</if>
+			<if test="categoryId > 0 &amp;&amp; categoryId != null">
+				and	category_id = #{categoryId}
+			</if>
+		</where>
+	</select>
+	<!-- 查找关于学习笔记的博客 -->
+	<select id="selectStudentNotes" resultMap="blogInformation">
+	 	select id,title,label_id,category_id,content,create_date from blog
+		<where>
+			<if test="labelId > 0 &amp;&amp; labelId != null">
+				label_id = #{labelId}
+			</if>
+			<if test="categoryId > 0 &amp;&amp; categoryId != null">
+				and	category_id = #{categoryId}
+			</if>
+		</where>
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+</mapper>
