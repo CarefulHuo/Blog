@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookStore.client.product.dao.IProductDao">
+
+	<!-- 书籍总数 -->
+	<select id="selectProductCount" resultType="int">
+		select count(id) from products
+		<where>
+			<if test="category != null">
+				category like "%"#{category}"%"
+			</if>
+		</where>
+	</select>
+
+	<!-- 书籍信息 -->
+	<select id="selectProductByCategory" resultType="product">
+		select * from products
+		<where>
+			<if test="category != null">
+				category like "%"#{category}"%"
+			</if>
+		</where>
+		<if test="start != null and pageSize != null">
+			limit #{start},#{pageSize}
+		</if>
+	</select>
+
+	<!-- 书籍信息 -->
+	<select id="selectProductById" resultType="product">
+		select * from products
+		where id = #{id}
+	</select>
+
+	<select id="selectProductCountByName" resultType="int">
+		select count(id) from products
+		<where>
+			<if test="name != null">
+				name like "%"#{name}"%"
+			</if>
+		</where>
+	</select>
+
+	<!-- 书籍信息 -->
+	<select id="selectProductByName" resultType="product">
+		select * from products
+		<where>
+			<if test="name != null">
+				name like "%"#{name}"%"
+			</if>
+		</where>
+		<if test="start != null and pageSize != null">
+			limit #{start},#{pageSize}
+		</if>
+	</select>
+</mapper>

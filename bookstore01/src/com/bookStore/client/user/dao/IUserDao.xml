@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookStore.client.user.dao.IUserDao">
+
+	<select id="selectEmail" resultType="user">
+		select * from user where
+		email = #{email}
+	</select>
+
+	<insert id="insertUser">
+		insert into user
+		(username,password,gender,email,telephone,introduce,activeCode,state,role,registTime)
+		values
+		(#{username},#{password},#{gender},#{email},#{telephone},#{introduce},#{activeCode},#{state},#{role},#{registTime})
+	</insert>
+
+	<update id="updateUserByActiveCode">
+		update user set state = 1 where activeCode =
+		#{active}
+	</update>
+
+	<select id="selectUserByUNandPW" resultType="user">
+		select * from user
+		where username=#{username} and password=#{password}
+	</select>
+	<update id="updateUserById">
+		update user set password = #{password},gender =
+		#{gender},telephone = #{telephone} where id = #{id}
+	</update>
+
+	<select id="selectUserById" resultType="user">
+		select * from user where
+		id = #{id}
+	</select>
+
+	<resultMap type="Order" id="OrderMap">
+		<id column="id" property="id" />
+		<association property="user" javaType="User" select="selectUserById"
+			column="user_id" />
+	</resultMap>
+
+	<select id="selectOrderByUser" resultMap="OrderMap">
+		select * from orders
+		where user_id = #{id}
+	</select>
+
+	<!-- 查看商品详细信息 -->
+	<select id="selectOrderById" resultMap="OrderMap">
+		select * from orders
+		where id = #{id}
+	</select>
+	
+	<select id="selectProductById" resultType="Product">
+		select * from products
+		where id = #{id}
+
+	</select>
+	<resultMap type="OrderItem" id="ItemMap">
+		<result column="buynum" property="buynum" />
+
+		<association property="order" javaType="Order" select="selectOrderById"
+			column="order_id" />
+
+		<association property="product" javaType="Product"
+			select="selectProductById" column="product_id" />
+
+	</resultMap>
+	<select id="selectOrderItemById" resultMap="ItemMap">
+		select * from orderitem
+		where order_id = #{id}
+	</select>
+	
+	<delete id="deleteOrderById" >
+		delete  from orders where id = #{id}
+	</delete>
+	<delete id="deleteOrderItemById" >
+		delete  from orderitem where order_id = #{id}
+	</delete>
+	
+	<update id="updateProductNum">
+		update products set pnum = pnum + #{buynum} where id = #{product.id}
+	</update>
+
+
+</mapper>

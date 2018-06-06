@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookStore.admin.sale.dao.ISaleDao">
+	<!-- <select id="selectProductList" resultType="productList">
+		select products.id,products.name,SUM(orderitem.buynum)salenum
+		from
+		products,orders,orderitem
+		where orders.paystate=1
+		and order_id=orders.id
+		and product_id=products.id
+		and year(ordertime)= #{year}
+		and
+		month(ordertime)= #{month}
+		GROUP BY products.id
+		ORDER BY salenum DESC
+	</select> -->
+	<select id="selectProductList" resultType="productList">
+		select
+		products.id,products.name,SUM(orderitem.buynum)salenum
+		from products,orders,orderitem
+		where orders.paystate=1
+		and order_id=orders.id
+		and product_id=products.id
+		and year(ordertime) = #{year} 
+		and month(ordertime) = #{month}
+		GROUP BY products.id
+		ORDER BY salenum DESC
+	</select>
+
+</mapper>
