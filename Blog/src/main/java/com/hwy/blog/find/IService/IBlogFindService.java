@@ -20,4 +20,6 @@ public interface IBlogFindService {
 
 	List<Blog> findStudentNotes(Integer flag, Label label, PageModel page);
 
+	List<Blog> findBlogByDate(PageModel page, String creat);
+
 }

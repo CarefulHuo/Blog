@@ -54,5 +54,15 @@ public class IBlogFindServiceImpl implements IBlogFindService {
 		studentNoteMap.put("categoryId", flag);
 		return blogFindDao.selectStudentNotes(studentNoteMap);
 	}
+	/*根据博客书写日期进行查找*/
+	public List<Blog> findBlogByDate(PageModel page, String creat) {
+		int recordCount = blogFindDao.selectBlogCountByDate(creat);
+		page.setRecordCount(recordCount );
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("startIndex", page.getFirstLimitParam());
+		map.put("pageSize", page.getPageSize());
+		map.put("date", creat);
+		return blogFindDao.selectBlogByDate(map);
+	}
 
 }

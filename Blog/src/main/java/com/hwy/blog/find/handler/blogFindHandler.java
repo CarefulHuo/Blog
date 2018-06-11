@@ -76,7 +76,7 @@ public class blogFindHandler {
 		}
 		return null;
 	}
-		
+	
 	/*每个博客的内容显示*/
 	@RequestMapping("/findBlogByOne.action")
 	public String findBlogByOne(Integer id,Model model){
@@ -90,6 +90,18 @@ public class blogFindHandler {
 		model.addAttribute("blog", blog);
 		model.addAttribute("labels", labelList);
 		return "/jsp/blogContent.jsp";
+	}
+	/*根据博客书写日期查找博客*/
+	@RequestMapping(value="/findBlogByDate.action")
+	public String findBlogByDate(@RequestParam(defaultValue="1")Integer pageIndex,Model model,String creat){
+		PageModel page = new PageModel();
+		page.setPageIndex(pageIndex);
+		List<Label> labelList = blogFindService.findLabel();
+		List<Blog> blogListByDate = blogFindService.findBlogByDate(page,creat);
+		model.addAttribute("page", page);
+		model.addAttribute("labe", labelList);
+		model.addAttribute("blogs", blogListByDate);
+		return "/jsp/studyNote.jsp";
 	}
 	/*关于我的显示*/
 	@RequestMapping("/aboutme.action")

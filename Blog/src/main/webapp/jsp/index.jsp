@@ -102,9 +102,9 @@
           <c:forEach items="${blogs }" var="blog">
           <div class="row-fluid">
             <div class="col-md-12">
-              <h2>${blog.b_title}</h2>
+              <h2><a  href="${pageContext.request.contextPath }/blogFind/findBlogByOne.action?id=${blog.b_id}">${blog.b_title}</a></h2>
               <a class="pull-right panel-title col-lg-2" href="#">${blog.b_date}</a><br>
-              <p>${blog.b_htmlStr}</p>
+              <p><a  href="${pageContext.request.contextPath }/blogFind/findBlogByOne.action?id=${blog.b_id}">${blog.b_htmlStr}</a></p>
               <p><a class="pull-right  col-lg-2" class="btn" href="${pageContext.request.contextPath }/blogFind/findBlogByOne.action?id=${blog.b_id}">更多内容 »</a></p>
             </div><!--/span-->
           </div><!--/row-->

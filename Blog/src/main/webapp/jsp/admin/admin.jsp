@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
+<%-- <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +13,9 @@
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
 </head>
 <body>
-	<t:insertAttribute name="header"/>
+	<!-- <t:insertAttribute name="header"/>
 	<t:insertAttribute name="right"/>
-	<t:insertAttribute name="body"/>
+	<t:insertAttribute name="body"/> -->
 <script src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js" type="text/javascript"></script>  
 </body>

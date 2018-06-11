@@ -102,7 +102,7 @@
           <div class="row-fluid">
             <div class="col-md-12">
               <h2>${blog.b_title}</h2>
-              <a class="pull-right panel-title col-lg-2" href="#">${blog.b_date}</a>
+              <a class="pull-right panel-title col-lg-2" href="${pageContext.request.contextPath }/blogFind/findBlogByDate.action?creat=${blog.b_date}">${blog.b_date}</a>
               <hr>
               <p>${blog.b_content}</p>
             </div><!--/span-->

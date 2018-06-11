@@ -22,4 +22,8 @@ public interface IBlogFindDao {
 
 	List<Blog> selectStudentNotes(Map<Object, Object> studentNoteMap);
 
+	int selectBlogCountByDate(String creat);
+
+	List<Blog> selectBlogByDate(Map<String, Object> map);
+
 }

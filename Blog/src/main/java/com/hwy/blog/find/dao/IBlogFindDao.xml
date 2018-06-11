@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				label_id = #{label.labelId}
 			</if>
 		</where>
+		ORDER BY create_date DESC      <!-- 按日期进行倒序排序 -->
 	</select>
 	<!-- 查找博客 -->
 	<resultMap type="Blog" id="blogInformation">
@@ -39,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				label_id = #{labelId}
 			</if>
 		</where>
+		ORDER BY create_date DESC     
 		limit #{startIndex},#{pageSize}
 	</select>
 	
@@ -60,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and	category_id = #{categoryId}
 			</if>
 		</where>
+		ORDER BY create_date DESC
 	</select>
 	<!-- 查找关于学习笔记的博客 -->
 	<select id="selectStudentNotes" resultMap="blogInformation">
@@ -72,7 +75,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and	category_id = #{categoryId}
 			</if>
 		</where>
+		ORDER BY create_date DESC
 		limit #{startIndex},#{pageSize}
 	</select>
-	
+	<!-- 根据博客书写日期查找博客数量 -->
+	<select id="selectBlogCountByDate" resultType="int">
+		SELECT COUNT(*) FROM blog where  DATE_FORMAT(create_date,"%Y%m%d")=#{creat}
+	</select>
+	<!-- 根据博客书写日期查找博客 -->
+	<select id="selectBlogByDate" resultMap="blogInformation" >
+		SELECT id,title,label_id,category_id,content,create_date 
+		FROM blog 
+		where  DATE_FORMAT(create_date,"%Y%m%d")=#{creat} limit #{startIndex},#{pageSize}
+	</select>
 </mapper>

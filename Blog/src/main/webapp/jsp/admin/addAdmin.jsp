@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t"%>
+<%-- <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="t"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +13,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/login.css">
 </head>
 <body>
-	<t:insertAttribute name="header"/>
+	<!-- <t:insertAttribute name="header"/>
 	<t:insertAttribute name="right"/>
-	<t:insertAttribute name="body"/>
+	<t:insertAttribute name="body"/> -->
 <script src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js" type="text/javascript"></script>  
 </body>
