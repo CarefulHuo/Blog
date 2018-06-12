@@ -89,6 +89,25 @@
 		                    <li ><a target="_blank" href="http://www.alloyteam.com/nav/">web前端</a></li>
 		                </ul>
 		            </div>
+	            </div>
+	            <!-- 第三个分类 -->
+	            <div class="navbar-inner navbar-default">
+	             	<div class="navbar-header">
+			           <button class="navbar-toggle" data-toggle="collapse" data-target="#guidangmenu">
+			                <c:forEach items="${guiDangs }" var="guiDang">
+			                   <span class="icon-bar"></span>
+			                </c:forEach>
+			            </button>
+			            <span class="navbar-brand nav-title">博客归档</span>
+			        </div>
+		            <div class="collapse navbar-collapse box" id="guidangmenu">
+		                <br><br>
+		                <ul class="nav nav-list box-list">
+		                    <c:forEach items="${guiDangs }" var="guiDang">
+		                    <li class="active"><a href="${pageContext.request.contextPath }/blogFind/fingGuiDangDate.action?guidang=${guiDang}">${guiDang }</a></li>
+		                    </c:forEach>
+		                </ul>
+		            </div>
 	            </div> 
              </div>
           </div><!--/.well -->
@@ -103,7 +122,7 @@
           <div class="row-fluid">
             <div class="col-md-12">
               <h2><a href="${pageContext.request.contextPath }/blogFind/findBlogByOne.action?id=${blog.b_id}">${blog.b_title}</a></h2>
-              <a class="pull-right panel-title col-lg-2" href="#">${blog.b_date}</a><br>
+              <a class="pull-right panel-title col-lg-2" href="${pageContext.request.contextPath }/blogFind/findBlogByDate.action?creat=${blog.b_date}">${blog.b_date}</a><br>
               <p><a href="${pageContext.request.contextPath }/blogFind/findBlogByOne.action?id=${blog.b_id}">${blog.b_htmlStr}</a></p>
               <p><a class="pull-right  col-lg-2" class="btn" href="${pageContext.request.contextPath }/blogFind/findBlogByOne.action?id=${blog.b_id}">更多内容 »</a></p>
             </div><!--/span-->

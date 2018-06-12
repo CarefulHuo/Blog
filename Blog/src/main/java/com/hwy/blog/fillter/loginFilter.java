@@ -17,8 +17,8 @@ public class loginFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) rq;
 		HttpServletResponse response = (HttpServletResponse) rp;
 		
-		String [] URI = {"/","/jsp/login.jsp","/blogFind/findBlogs.action","/blogFind/findBlogByOne.action",
-						  "/jsp/index.jsp","/blogAdmin/selectBlog.action","/blogAdmin/login.action",
+		String [] URI = {"/","/jsp/login.jsp","/blogFind/findBlogs.action","/blogFind/findBlogByOne.action","/blogFind/fingGuiDangDate.action",
+						  "/jsp/index.jsp","/blogAdmin/selectBlog.action","/blogAdmin/login.action","/blogFind/findBlogByDate.action",
 						  "/jsp/abountme.jsp","/blogFind/aboutme.action","/blogFind/findStudentNote.action"};
 		
 		//项目路径

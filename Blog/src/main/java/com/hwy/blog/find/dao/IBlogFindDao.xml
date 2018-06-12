@@ -86,6 +86,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBlogByDate" resultMap="blogInformation" >
 		SELECT id,title,label_id,category_id,content,create_date 
 		FROM blog 
-		where  DATE_FORMAT(create_date,"%Y%m%d")=#{creat} limit #{startIndex},#{pageSize}
+		<where>
+			DATE_FORMAT(create_date,"%m%d%Y")=#{date}
+		</where>
+		limit #{startIndex},#{pageSize}
 	</select>
+	<!-- 根据月份查找博客数量 -->
+	<select id="slectGuiDangCount" resultType="int">
+		SELECT COUNT(*) FROM blog WHERE create_date BETWEEN ${startDate} and DATE_ADD(${startDate},INTERVAL 1 MONTH)
+	</select>
+	<!-- 根据月份查找博客内容 -->
+	<select id="selectGuiDangBlog" resultMap="blogInformation">
+		SELECT id,title,label_id,category_id,content,create_date 
+		FROM blog
+		<where>
+			create_date BETWEEN #{date} and DATE_ADD(#{date},INTERVAL 1 MONTH)
+		</where> 
+		limit #{startIndex},#{pageSize}
+	</select> 
 </mapper>

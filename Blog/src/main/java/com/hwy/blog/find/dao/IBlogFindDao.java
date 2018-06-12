@@ -26,4 +26,8 @@ public interface IBlogFindDao {
 
 	List<Blog> selectBlogByDate(Map<String, Object> map);
 
+	int slectGuiDangCount(@Param(value="startDate")String startDate);
+
+	List<Blog> selectGuiDangBlog(Map<String, Object> information);
+
 }

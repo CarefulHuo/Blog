@@ -1,5 +1,6 @@
 package com.hwy.blog.find.IService.Impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,38 @@ public class IBlogFindServiceImpl implements IBlogFindService {
 		map.put("pageSize", page.getPageSize());
 		map.put("date", creat);
 		return blogFindDao.selectBlogByDate(map);
+	}
+	//博客归档按月份
+	@Override
+	public List<String> guiDangDateCount(List<String> createDates) {
+		List<String> result = new ArrayList<>();  //查询结果集
+		StringBuilder dateBuilder = new StringBuilder();
+		
+		for(int i = 0; i<createDates.size()-1; i++){
+			int count  = blogFindDao.slectGuiDangCount(createDates.get(i));
+			if(count != 0){
+				char [] creatDates = createDates.get(i).toCharArray();
+				dateBuilder.append(creatDates[0]).append(creatDates[1]).append(creatDates[2]).append(creatDates[3]).append("年");
+				dateBuilder.append(creatDates[4]).append(creatDates[5]).append("月");
+				dateBuilder.append("          ").append(Integer.toString(count)).append("篇");
+				result.add(dateBuilder.toString());
+				dateBuilder.setLength(0);
+			}
+		}
+		return result;
+	}
+	/*按月份查找博客*/
+	@Override
+	public List<Blog> findGuiDangBlog(PageModel page, String string) {
+		int recordCount = blogFindDao.slectGuiDangCount(string);
+		page.setRecordCount(recordCount);
+		
+		Map<String,Object> information = new HashMap<>();
+		information.put("startIndex", page.getFirstLimitParam());
+		information.put("pageSize", page.getPageSize());
+		information.put("date", string);
+		
+		return blogFindDao.selectGuiDangBlog(information);
 	}
 
 }

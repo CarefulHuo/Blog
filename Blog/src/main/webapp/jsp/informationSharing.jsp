@@ -89,6 +89,25 @@
 		                    <li ><a target="_blank" href="http://www.alloyteam.com/nav/">web前端</a></li>
 		                </ul>
 		            </div>
+	            </div>
+	            <!-- 第三个分类 -->
+	            <div class="navbar-inner navbar-default">
+	             	<div class="navbar-header">
+			           <button class="navbar-toggle" data-toggle="collapse" data-target="#guidangmenu">
+			                <c:forEach items="${guiDangs }" var="guiDang">
+			                   <span class="icon-bar"></span>
+			                </c:forEach>
+			            </button>
+			            <span class="navbar-brand nav-title">博客归档</span>
+			        </div>
+		            <div class="collapse navbar-collapse box" id="guidangmenu">
+		                <br><br>
+		                <ul class="nav nav-list box-list">
+		                    <c:forEach items="${guiDangs }" var="guiDang">
+		                    <li class="active"><a href="${pageContext.request.contextPath }/blogFind/fingGuiDangDate.action?guidang=${guiDang}">${guiDang }</a></li>
+		                    </c:forEach>
+		                </ul>
+		            </div>
 	            </div> 
              </div>
           </div><!--/.well -->

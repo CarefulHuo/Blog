@@ -22,4 +22,8 @@ public interface IBlogFindService {
 
 	List<Blog> findBlogByDate(PageModel page, String creat);
 
+	List<String> guiDangDateCount(List<String> createDates);
+
+	List<Blog> findGuiDangBlog(PageModel page, String string);
+
 }

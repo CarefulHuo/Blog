@@ -22,20 +22,23 @@ public class userHandler {
 	public String login(User user,Model model,HttpSession session){
 		User login_user = userService.findUser(user);
 		String imageCode = (String) session.getAttribute("checkcode_session");
-		if(user.getB_code().equals(null)){
-			model.addAttribute("message","验证码为空！！！");
+		System.out.println(user.getB_username());
+		if ("".equals(user.getB_username())||user.getB_username() == null) {
 			return "/jsp/login.jsp";
-		}
-		else if(!user.getB_code().equals(imageCode)){
-			model.addAttribute("message","验证码错误！！！");
-			return "/jsp/login.jsp";
-		}
-		else if(login_user!=null){
-			session.setAttribute("login_user", login_user);
-			return "/jsp/admin.jsp";
 		}else{
-			model.addAttribute("message","用户名或者密码错误！！！");
-			return "/jsp/login.jsp";
+			if (user.getB_code().equals(null)) {
+				model.addAttribute("message", "验证码为空！！！");
+				return "/jsp/login.jsp";
+			} else if (!user.getB_code().equals(imageCode)) {
+				model.addAttribute("message", "验证码错误！！！");
+				return "/jsp/login.jsp";
+			} else if (login_user != null) {
+				session.setAttribute("login_user", login_user);
+				return "/jsp/admin.jsp";
+			} else {
+				model.addAttribute("message", "用户名或者密码错误！！！");
+				return "/jsp/login.jsp";
+			} 
 		}
 	}
 	//退出
